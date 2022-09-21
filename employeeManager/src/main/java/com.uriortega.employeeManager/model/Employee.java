@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+@Entity
 public class Employee implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,7 +46,7 @@ public class Employee implements Serializable{
     public String getEmail() {
         return email;
     }
-    public void setEmail(String name) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -72,7 +73,7 @@ public class Employee implements Serializable{
     }
 
     public String getEmployeeCode() {
-        return getEmployeeCode();
+        return employeeCode;
     }
 
     public void setEmployeeCode(String employeeCode) {
