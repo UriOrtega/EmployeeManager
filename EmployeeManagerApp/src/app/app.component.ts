@@ -37,17 +37,35 @@ export class AppComponent implements OnInit {
       (response: Employee) => {
         console.log(response);
         this.getEmployees();
+        addForm.reset;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+        addForm.reset;
+      }
+    );
+  }
+
+  public onUpdateEmployee(employee: Employee): void {
+    this.employeeService.updateEmployee(employee).subscribe(
+      (response: Employee) => {
+        console.log(response);
+        this.getEmployees();
       },
       (error: HttpErrorResponse) => {alert(error.message);}
     );
   }
 
-  public onUpdateEmployee(editForm: NgForm): void {
-    //TO DO
-  }
-
   public onDeleteEmployee(employeeID: number | undefined): void {
-    //TO DO
+    this.employeeService.deleteEmployee(employeeID!).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getEmployees();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
   }
   
   public onOpenModal(mode: string, employee?: Employee|null): void {
@@ -60,9 +78,15 @@ export class AppComponent implements OnInit {
       button.setAttribute('data-target', '#addEmployeeModal');
     }
     else if (mode === 'edit') {
+      if (employee){
+        this.editEmployee = employee;
+      }
       button.setAttribute('data-target', '#updateEmployeeModal');
     }
     else if (mode === 'delete') {
+      if (employee){
+        this.deleteEmployee = employee;
+      }
       button.setAttribute('data-target', '#deleteEmployeeModal');
     }
     container?.appendChild(button);

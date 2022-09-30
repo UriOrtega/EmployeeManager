@@ -17,7 +17,6 @@
   </div>
 </nav>
 <div class="container" id="main-container">
-  <script>document.getElementById('main-container').style.display = 'block'; </script>
     <div class="row">
         <div *ngFor="let employee of employees" class="col-md-6 col-xl-3">
             <div class="card m-b-30">
@@ -154,7 +153,6 @@
 
 <!-- Notification for no employees -->
 <div *ngIf="employees?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
-  <script>document.getElementById('main-container').style.display = 'none'; </script>
   <div class="alert alert-info" role="alert">
     <h4 class="alert-heading">NO EMPLOYEES!</h4>
     <p>No Employees were found.</p>
